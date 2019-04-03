@@ -42,7 +42,7 @@ node bamazonCustomer
 
 ### For Example ###
 
-![bamazonCustomer](.\assets\cstmrview.gif)
+![bamazonCustomer](assets\cstmrview.gif)
 
 ### Manager Mode ###
  
@@ -56,7 +56,7 @@ node bamazonManager
 
 ### For Example ###
 
-![movie-this](.\assets\mngrview.gif)
+![movie-this](assets\mngrview.gif)
 
 
 
