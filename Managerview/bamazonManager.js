@@ -56,6 +56,7 @@ function viewList(){
             table.push(Object.values(resp[i]));
         }
         console.log(table.toString());
+        start();
     });
 }
 
@@ -69,6 +70,7 @@ function viewLow(){
             table.push(Object.values(resp[i]));
         }
         console.log(table.toString());
+        start();
     });
 }
 
@@ -81,7 +83,7 @@ function addStock(){
     });
     inquirer.prompt([
         {
-            type: 'list',
+            type: 'input',
             name: 'itemid',
             message: 'Which item would you like to add stock to?',
             choices: idList
@@ -89,20 +91,14 @@ function addStock(){
         {
             type: 'input',
             name: 'amount',
-            message: 'How many items would like to add?',
-            validate: function(input){
-                if(typeof input == number){
-                    return true;
-                } else {
-                    return false;
-                }
+            message: 'How many items would like to add?'
 
             }
-        }
     ]).then(resp => {
-        connection.query('UPDATE products SET stock_quanitity = ? WHERE id = ?', [resp.amount, resp.itemid], function (err, res, fields) {
+        connection.query('UPDATE products SET stock_quanitity = ? WHERE item_id = ?', [resp.amount, resp.itemid], function (err, res, fields) {
             if (err) throw err;
             console.log("You have successfully added",resp.amount,"products with the id of",resp.itemid)
+            start();
           });
     })
 }
@@ -133,6 +129,7 @@ function addProduct(){
         connection.query('INSERT INTO products (product_name, department_name, price, stock_quanitity) VALUES (?,?,?,?)',[resp.name, resp.department, resp.price, resp.stock], function (err, res, fields) {
             if (err) throw err;
             console.log("You have successfully added a new product");
+            start();
         })
     })
 }
